@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+    <xacro:property name="mesh_scale" value="0.001 0.001 0.001"/>
+
+    <xacro:include filename="$(find day_7_description)/urdf/colors/materials.xacro"/>
+    <xacro:include filename="$(find day_7_description)/urdf/base/bot_base.xacro"/>
+    <xacro:include filename="$(find day_7_description)/urdf/wheels/bot_wheels.xacro"/>
+    <xacro:include filename="$(find day_7_description)/urdf/sensors/lidar.xacro"/>
+    <xacro:include filename="$(find day_7_description)/urdf/solar_harvester/solar_panel.xacro"/>
+
+
+    <xacro:bot_base prefix=""/>
+    <xacro:wheel prefix="left" reflect="1"/>
+    <xacro:wheel prefix="right" reflect="-1"/>
+    <xacro:castor_wheel prefix="front" reflect="1"/>
+    <xacro:castor_wheel prefix="rear" reflect="-1"/>
+    <xacro:lidar prefix=""/>
+    <xacro:solar_panel prefix=""/>
+    
+</robot>

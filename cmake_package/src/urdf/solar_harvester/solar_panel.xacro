@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_lidar">
+
+    <xacro:property name ="pole_height" value="0.3"/>
+    <xacro:property name ="pole_radius" value="0.005"/>
+    <xacro:property name="pole_x_off" value="-0.05"/>
+    <xacro:property name="panel_length" value="0.1"/>
+    <xacro:property name="panel_height" value="0.005"/>
+
+
+    <xacro:macro name= "solar_panel" params="prefix">
+
+        <link name="pole_link">
+            <visual>
+                <geometry>
+                    <cylinder radius="${pole_radius}" length="${pole_height}"/>
+                </geometry>
+                <origin xyz="0 0 ${pole_height/2}" rpy="0 0 0"/>
+                <material name="grey"/>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <cylinder radius="${pole_radius}" length="${pole_height}"/>
+                </geometry>
+                <origin xyz="0 0 ${pole_height/2}" rpy="0 0 0"/>        
+            </collision>
+
+        </link>
+
+        <joint name="base_pole_joint" type="fixed">
+            <parent link="base_link"/>
+            <child link="pole_link"/>
+            <origin xyz="${pole_x_off} 0 ${base_height}" rpy="0 0 0"/>
+        </joint>
+
+        
+        <link name="panel_link">
+            <visual>
+                <geometry>
+                    <box size ="${panel_length} ${panel_length} ${panel_height}"/>
+                </geometry>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <material name="blue"/>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <box size ="${panel_length} ${panel_length} ${panel_height}"/>
+                </geometry>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </collision>
+        </link>
+
+        <joint name="pole_panel_joint" type="revolute">
+            <parent link="pole_link"/>
+            <child link="panel_link"/>
+            <origin xyz="0 0 ${pole_height}" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            
+            <limit lower="-1.17"
+                upper="1.17"
+                effort="2.0"
+                velocity="0.5"/>
+        </joint>
+
+
+    </xacro:macro>
+
+</robot>
