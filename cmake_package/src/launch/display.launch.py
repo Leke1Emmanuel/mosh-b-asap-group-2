@@ -8,10 +8,10 @@ import os
 
 def generate_launch_description():
 
-    day_7_description = FindPackageShare('day_7_description')
-    path_to_urdf = PathJoinSubstitution([day_7_description, 'urdf', 'day_7_bot.urdf.xacro'])
+    package_share = FindPackageShare('cmake_package')
+    path_to_urdf = PathJoinSubstitution([package_share, 'urdf', 'day_7_bot.urdf.xacro'])
     robot_description = ParameterValue(Command(['xacro ', path_to_urdf]), value_type=str)
-    rviz_config = PathJoinSubstitution([day_7_description, 'rviz', 'default.rviz'])
+    rviz_config = PathJoinSubstitution([package_share, 'rviz', 'default.rviz'])
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher", 

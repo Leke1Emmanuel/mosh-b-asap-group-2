@@ -12,7 +12,7 @@
         <link name="${prefix}_wheel_link">
             <visual>
                 <geometry>
-                    <mesh filename="package://day_7_description/meshes/wheel.stl" scale="${mesh_scale}"/>
+                    <mesh filename="package://cmake_package/meshes/wheel.stl" scale="${mesh_scale}"/>
                 </geometry>
                 <origin xyz="0 ${reflect * wheel_length / 2} 0" rpy="0 0 0"/>
                 <material name="black"/>
@@ -39,7 +39,7 @@
         <link name="${prefix}_castor_wheel_link">
             <visual>
                 <geometry>
-                    <mesh filename="package://day_7_description/meshes/caster.stl" scale="${mesh_scale}"/>
+                    <mesh filename="package://cmake_package/meshes/caster.stl" scale="${mesh_scale}"/>
                 </geometry>
                 <origin xyz="0 0 ${-castor_radius}" rpy="0 0 0"/>
                 <material name="black"/>

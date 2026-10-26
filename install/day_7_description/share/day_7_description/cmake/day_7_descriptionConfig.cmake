@@ -1,1 +1,0 @@
-/home/samuel-achilike/moshb_asap_group2/build/day_7_description/ament_cmake_core/day_7_descriptionConfig.cmake

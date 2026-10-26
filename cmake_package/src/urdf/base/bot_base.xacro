@@ -14,7 +14,7 @@
         <link name="base_link">
             <visual>
                 <geometry>
-                    <mesh filename="package://day_7_description/meshes/chassis.stl" scale="${mesh_scale}"/>
+                    <mesh filename="package://cmake_package/meshes/chassis.stl" scale="${mesh_scale}"/>
                 </geometry>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
                 <material name="grey"/>
