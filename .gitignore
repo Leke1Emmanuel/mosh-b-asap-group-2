@@ -1,4 +1,9 @@
-.vscode
-/build
-/install
-/log
+# colcon build output
+moshb_ws/build/
+moshb_ws/install/
+moshb_ws/log/
+
+# editor and local tool settings
+.vscode/
+.claude/settings.local.json
+__pycache__/
