@@ -19,6 +19,8 @@ colcon build --packages-select mosh_b_description && source install/setup.bash
 | --- | --- | --- |
 | `jazzy-harmonic` | ROS 2 Jazzy · Gazebo Harmonic | `ros2 launch mosh_b_description gazebo_jazzy-harmonic.launch.py` |
 
+Pick a world with `world:=<file>`, for example `ros2 launch mosh_b_description gazebo_jazzy-harmonic.launch.py world:=room.sdf`.
+
 ## Layout
 
 - `urdf/mosh_b.urdf.xacro`: the source of truth. `xacro mosh_b.urdf.xacro sim:=<target>` (default `jazzy-harmonic`).
@@ -26,7 +28,7 @@ colcon build --packages-select mosh_b_description && source install/setup.bash
 - `sdf/mosh_b/`: standalone SDF model.
 - `meshes/`: binary STL meshes.
 - `config/controllers.yaml`: ros2_control controllers. `config/gz_bridge_<target>.yaml`: ROS <-> Gazebo topics.
-- `worlds/`: an empty world with the physics, sensors, IMU, contact and force-torque systems loaded.
+- `worlds/`: Gazebo worlds. `empty.sdf` is the default. `room`, `maze`, `office`, `tb3_sandbox`, `depot` and `warehouse` came from the horizon_robot project. `depot` and `warehouse` download models from Gazebo Fuel the first time they load, so they need internet then.
 
 ## Notes
 

@@ -25,7 +25,7 @@ def generate_launch_description():
     rsp = Node(package='robot_state_publisher', executable='robot_state_publisher', output='screen',
                parameters=[{'robot_description': robot_description, 'use_sim_time': True}])
 
-    world = LaunchConfiguration('world')
+    world = PathJoinSubstitution([share, 'worlds', LaunchConfiguration('world')])
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [PathJoinSubstitution([FindPackageShare('ros_gz_sim'), 'launch', 'gz_sim.launch.py'])]),
@@ -36,8 +36,8 @@ def generate_launch_description():
                   parameters=[{'config_file': os.path.join(share, 'config', 'gz_bridge_' + TARGET + '.yaml'),
                                'use_sim_time': True}])
     actions = [
-        DeclareLaunchArgument('world', default_value=os.path.join(share, 'worlds', 'empty.sdf'),
-                              description='World SDF file'),
+        DeclareLaunchArgument('world', default_value='empty.sdf',
+                              description='World file name in worlds/: empty, room, maze, office, tb3_sandbox, depot or warehouse (.sdf)'),
         DeclareLaunchArgument('x', default_value='0'),
         DeclareLaunchArgument('y', default_value='0'),
         DeclareLaunchArgument('z', default_value='0.1'),
