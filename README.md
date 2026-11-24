@@ -27,44 +27,43 @@ Projected impact from the pitch deck (not yet field-validated):
 
 ## Current status
 
-This repository currently contains the robot's ROS 2 description package, `cmake_package`. It provides:
+All ROS 2 work lives in the `moshb_ws/` colcon workspace. So far it has:
 
-- A modular URDF/xacro model of the robot
-- STL meshes for the chassis, wheels, castors, lidar, and solar panel
-- An RViz configuration and launch file for visualising the model
+- **`mosh_b_description`**: the robot model exported from SolidWorks. It has two motor-driven wheels, a castor, the drive base, a Raspberry Pi, an L298N motor driver, a buck converter and a lidar. It also includes STL meshes, an RViz view, and Gazebo (Lyrical · Jetty) launch and world files.
+- **`mosh_b_bringup`**: empty for now. Top-level launch files and parameters will go here.
+- **`mosh_b_control`**: empty for now. Python nodes for motors, sensors and sun tracking will go here.
 
-Autonomy, battery management, and the Raspberry Pi/microcontroller integration are planned but not yet implemented. The current model is two driven wheels plus two castors; the pitch describes the target design as a four-wheel autonomous ground vehicle.
+Autonomy, battery management, and the Raspberry Pi/microcontroller integration are planned but not yet implemented. The solar panel and cargo rack are not in the current model yet. The pitch describes the target design as a four-wheel autonomous ground vehicle.
 
 ## Repository layout
 
 ```text
 .
-├── cmake_package/
-│   ├── CMakeLists.txt
-│   ├── package.xml
-│   └── src/
-│       ├── launch/            # display.launch.py
-│       ├── meshes/            # STL meshes
-│       ├── rviz/              # RViz configuration
-│       └── urdf/              # Modular xacro files
-└── pitchdeck/
-    └── MoSH-B Mobile Solar Harnessing Bot.pptx
+├── README.md
+├── pitchdeck/
+│   └── MoSH-B Mobile Solar Harnessing Bot.pptx
+└── moshb_ws/                  # ROS 2 workspace
+    └── src/
+        ├── mosh_b_description/  # URDF, meshes, RViz, Gazebo
+        ├── mosh_b_bringup/      # launch + config (empty)
+        └── mosh_b_control/      # control nodes (empty)
 ```
 
 ## Quick start
 
 ```bash
-git clone https://github.com/zane1502/mosh-b-asap-group-2.git
-cd mosh-b-asap-group-2
+git clone https://github.com/zane1502/mosh-b-asap-group-2.git MoSH-B
+cd MoSH-B/moshb_ws
 source /opt/ros/$ROS_DISTRO/setup.bash
+rosdep install --from-paths src -y --ignore-src
 colcon build --symlink-install
 source install/setup.bash
-ros2 launch cmake_package display.launch.py
+ros2 launch mosh_b_description display.launch.py
 ```
 
 ## Roadmap
 
-- [x] URDF/xacro robot description
+- [x] URDF robot description
 - [x] RViz visualisation with movable joints
 - [ ] Raspberry Pi software stack
 - [ ] Microcontroller integration for motors and sensors
