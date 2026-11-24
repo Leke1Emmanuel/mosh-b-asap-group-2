@@ -40,7 +40,8 @@
   <joint name="drive_base_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="drive_base"/>
-    <origin xyz="-0.00129909 0 0.09112" rpy="0 0 0"/>
+    <!-- Yaw -90 deg: the CAD export drives along its +y, so turn it to face +x (REP 103: x forward, y left, z up) -->
+    <origin xyz="-0.00129909 0 0.09112" rpy="0 0 -1.5708"/>
   </joint>
 
   <link name="right_motor_Link">
